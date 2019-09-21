@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-class ServerResource extends Resource
+class OdiResource extends Resource
 {
     /**
      * Transform the resource into an array.
@@ -15,9 +15,9 @@ class ServerResource extends Resource
         return [
             'id' => $this->id,
             'jgdm' => $this->jgdm,
-            'zzjgdm' => $this->zzjgdm,
-            'fwdmc' => $this->fwdmc,
-            'fwdlx' => $this->fwdlx,
+            'bspt' => $this->bspt,
+            'nf' => date('Y-m', $this->nf),
+            'zgzs' => $this->zgzs,
             'created_at' => $this->created_at->toDateTimeString(),
         ];
     }

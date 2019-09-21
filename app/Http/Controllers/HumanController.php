@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ServerResource;
-use App\Models\Server;
+use App\Http\Resources\HumanResource;
+use App\Models\Human;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class ServerController extends Controller
+class HumanController extends Controller
 {
     public function index(Request $request)
     {
-        $server = Server::query()
+        $human = Human::query()
             ->when($request->input('startTime') && $request->input('endTime'), function ($query) use ($request) {
                 $query->whereBetween('created_at', [
                     date('Y-m-d H:i:s', $request->input('startTime')),
@@ -24,20 +24,20 @@ class ServerController extends Controller
 
                 $sql = '';
                 foreach ($keyword as $kw) {
-                    $sql .= " concat(fwddm, fwdmc, zzjgdm) like '%" . $kw . "%' and";
+                    $sql .= " concat(jgdm, yhryxm, yhrygh) like '%" . $kw . "%' and";
                 }
 
                 return $query->whereRaw(substr($sql, 0, -4));
             })
-            ->when($request->filled('fwdlx'), function ($query) use ($request) {
-                $query->where('fwdlx', $request->input('fwdlx'));
+            ->when($request->filled('xb'), function ($query) use ($request) {
+                $query->where('xb', $request->input('xb'));
             })
             ->orderBy($request->input('order', 'id'), $request->input('sort', 'desc'))
             ->paginate($request->input('pageSize', 10), ['*'], 'page', $request->input('page', 1));
 
         return $this->success([
-            'data' => ServerResource::collection($server),
-            'total' => $server->total(),
+            'data' => HumanResource::collection($human),
+            'total' => $human->total(),
         ]);
     }
 
@@ -45,33 +45,33 @@ class ServerController extends Controller
     {
         return [
             'jgdm' => 'required|string',
-            'zzjgdm' => 'required',
-            'fwwddm' => 'required',
-            'fwdmc' => 'required',
-            'xzqhdm' => 'required',
-            'fwdlx' => 'required',
-            'fwdclrq' => 'required',
-            'dwlsgxdm' => 'required',
-            'fwdflgllbdm' => 'required',
-            'fwdfldm' => 'required',
-            'jjlxdm' => 'required',
-            'dz' => 'required',
-            'fwdyyjb' => 'required',
-            'fwdyydj' => 'required',
-            'hlwyywz' => 'required',
-            'xkzhm' => 'required',
-            'xkxmmc' => 'required',
-            'xkzyxq' => 'required',
-            'kbzjjes' => 'required',
-            'frdb' => 'required',
-            'fwdszdmzzzdfbz' => 'required',
-            'sffzjg' => 'required',
-            'fwddemc' => 'nullable',
-            'fwdms' => 'nullable',
-            'yzbm' => 'nullable',
-            'dhhm' => 'nullable',
-            'dwdzyx' => 'nullable',
-            'bz' => 'nullable',
+            'yhrygh' => 'required',
+            'yhryxm' => 'required',
+            'xb' => 'required',
+            'csrq' => 'required',
+            'sfzh' => 'required',
+            'ksdm' => 'required',
+            'zyjszwdm' => 'required',
+            'zyjszwlbdm' => 'required',
+            'zzlbmc' => 'required',
+            'zgzsbm' => 'required',
+            'zghdsj' => 'required',
+            'zyzsbm' => 'required',
+            'fzrq' => 'required',
+            'zydd' => 'required',
+            'zyfw' => 'required',
+            'zyzyyljgdm' => 'required',
+            'zyzyyymc' => 'required',
+            'qkysbz' => 'required',
+            'sjhm' => 'required',
+            'zc' => 'nullable',
+            'mc' => 'nullable',
+            'cjgzrq' => 'required',
+            'zcsj' => 'required',
+            'xl' => 'nullable',
+            'grzpcfdz' => 'required',
+            'zgzcfdz' => 'nullable',
+            'zyzcfdz' => 'nullable',
             'sjscsj' => 'required',
             'tbrqsj' => 'required',
             'cxbz' => 'required'
@@ -91,7 +91,7 @@ class ServerController extends Controller
         // 验证参数，如果验证失败，则会抛出 ValidationException 的异常
         $params = $this->validate($request, $rules);
 
-        $result = Server::query()->create($params);
+        $result = Human::query()->create($params);
 
         if ($result) {
             return $this->success($result, '添加成功');
@@ -111,10 +111,10 @@ class ServerController extends Controller
             'id' => 'required|numeric',
         ]);
 
-        $server = Server::query()->find($id);
+        $human = Human::query()->find($id);
 
-        if ($server) {
-            $data = optional($server)->toArray();
+        if ($human) {
+            $data = optional($human)->toArray();
             $data['tbrqsj'] = date('Y-m-d', $data['tbrqsj']);
             return $this->success($data);
         }
@@ -140,14 +140,17 @@ class ServerController extends Controller
         ]);
 
         // 修改部分数据格式
-        $params['fwdclrq'] = date('Y-m-d', $params['fwdclrq']);
+        $params['fzrq'] = date('Y-m-d', $params['fzrq']);
+        $params['zghdsj'] = date('Y-m-d', $params['zghdsj']);
+        $params['zcsj'] = date('Y-m-d', $params['zcsj']);
+        $params['cjgzrq'] = date('Y-m-d', $params['cjgzrq']);
+        $params['csrq'] = date('Y-m-d', $params['csrq']);
         $params['sjscsj'] = date('Y-m-d', $params['sjscsj']);
-        $params['xkzyxq'] = date('Y-m-d', $params['xkzyxq']);
 
-        $server = Server::query()->whereId($id)->update($params);
+        $human = Human::query()->whereId($id)->update($params);
 
-        if ($server) {
-            return $this->success($server, '编辑成功');
+        if ($human) {
+            return $this->success($human, '编辑成功');
         }
 
         return $this->fail('编辑失败');
@@ -168,7 +171,7 @@ class ServerController extends Controller
 
         $num = count($params['ids']);
 
-        $numDestroied = Server::query()
+        $numDestroied = Human::query()
             ->whereIn('id', collect($params['ids']))
             ->delete();
 

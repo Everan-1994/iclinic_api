@@ -99,7 +99,6 @@ $router->group([
             $router->post('/', 'PersonController@store');              // 新增
             $router->get('/', 'PersonController@index');               // 列表
             $router->get('/{id}', 'PersonController@show');            // 详情
-            $router->patch('/sort', 'PersonController@updateSort');    // 更新排序
             $router->put('/{id}', 'PersonController@update');          // 更新
             $router->delete('/', 'PersonController@delete');           // 删除
         });
@@ -110,7 +109,6 @@ $router->group([
             $router->post('/', 'OrganizationController@store');              // 新增
             $router->get('/', 'OrganizationController@index');               // 列表
             $router->get('/{id}', 'OrganizationController@show');            // 详情
-            $router->patch('/sort', 'OrganizationController@updateSort');    // 更新排序
             $router->put('/{id}', 'OrganizationController@update');          // 更新
             $router->delete('/', 'OrganizationController@delete');           // 删除
         });
@@ -121,9 +119,38 @@ $router->group([
             $router->post('/', 'ServerController@store');              // 新增
             $router->get('/', 'ServerController@index');               // 列表
             $router->get('/{id}', 'ServerController@show');            // 详情
-            $router->patch('/sort', 'ServerController@updateSort');    // 更新排序
             $router->put('/{id}', 'ServerController@update');          // 更新
             $router->delete('/', 'ServerController@delete');           // 删除
+        });
+
+        // 机构业务发展情况
+        $router->group(['prefix' => 'odi'], function ($router) {
+            /* @var \Laravel\Lumen\Routing\Router $router */
+            $router->post('/', 'OdiController@store');              // 新增
+            $router->get('/', 'OdiController@index');               // 列表
+            $router->get('/{id}', 'OdiController@show');            // 详情
+            $router->put('/{id}', 'OdiController@update');          // 更新
+            $router->delete('/', 'OdiController@delete');           // 删除
+        });
+
+        // 机构业务发展情况
+        $router->group(['prefix' => 'department'], function ($router) {
+            /* @var \Laravel\Lumen\Routing\Router $router */
+            $router->post('/', 'DepartmentController@store');              // 新增
+            $router->get('/', 'DepartmentController@index');               // 列表
+            $router->get('/{id}', 'DepartmentController@show');            // 详情
+            $router->put('/{id}', 'DepartmentController@update');          // 更新
+            $router->delete('/', 'DepartmentController@delete');           // 删除
+        });
+
+        // 人力资源
+        $router->group(['prefix' => 'human'], function ($router) {
+            /* @var \Laravel\Lumen\Routing\Router $router */
+            $router->post('/', 'HumanController@store');              // 新增
+            $router->get('/', 'HumanController@index');               // 列表
+            $router->get('/{id}', 'HumanController@show');            // 详情
+            $router->put('/{id}', 'HumanController@update');          // 更新
+            $router->delete('/', 'HumanController@delete');           // 删除
         });
     });
 });
