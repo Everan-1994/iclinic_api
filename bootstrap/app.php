@@ -97,13 +97,14 @@ $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 $app->register(Jacobcyl\AliOSS\AliOssServiceProvider::class);
-$app->register(App\Providers\OperationServiceProvide::class);
+//$app->register(App\Providers\OperationServiceProvide::class);
 
 /**
  * Config
  */
 $app->configure('allowOriginHost');
 $app->configure('filesystems');
+$app->configure('errorCode');
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes

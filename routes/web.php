@@ -92,6 +92,39 @@ $router->group([
                 $router->patch('/sort', 'BlockItemController@sort'); // sort
             });
         });
+
+        // 个人信息
+        $router->group(['prefix' => 'person'], function ($router) {
+            /* @var \Laravel\Lumen\Routing\Router $router */
+            $router->post('/', 'PersonController@store');              // 新增
+            $router->get('/', 'PersonController@index');               // 列表
+            $router->get('/{id}', 'PersonController@show');            // 详情
+            $router->patch('/sort', 'PersonController@updateSort');    // 更新排序
+            $router->put('/{id}', 'PersonController@update');          // 更新
+            $router->delete('/', 'PersonController@delete');           // 删除
+        });
+
+        // 机构信息
+        $router->group(['prefix' => 'organization'], function ($router) {
+            /* @var \Laravel\Lumen\Routing\Router $router */
+            $router->post('/', 'OrganizationController@store');              // 新增
+            $router->get('/', 'OrganizationController@index');               // 列表
+            $router->get('/{id}', 'OrganizationController@show');            // 详情
+            $router->patch('/sort', 'OrganizationController@updateSort');    // 更新排序
+            $router->put('/{id}', 'OrganizationController@update');          // 更新
+            $router->delete('/', 'OrganizationController@delete');           // 删除
+        });
+
+        // 服务点
+        $router->group(['prefix' => 'server'], function ($router) {
+            /* @var \Laravel\Lumen\Routing\Router $router */
+            $router->post('/', 'ServerController@store');              // 新增
+            $router->get('/', 'ServerController@index');               // 列表
+            $router->get('/{id}', 'ServerController@show');            // 详情
+            $router->patch('/sort', 'ServerController@updateSort');    // 更新排序
+            $router->put('/{id}', 'ServerController@update');          // 更新
+            $router->delete('/', 'ServerController@delete');           // 删除
+        });
     });
 });
 
