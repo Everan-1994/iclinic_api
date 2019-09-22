@@ -152,6 +152,16 @@ $router->group([
             $router->put('/{id}', 'HumanController@update');          // 更新
             $router->delete('/', 'HumanController@delete');           // 删除
         });
+
+        // 设备资源
+        $router->group(['prefix' => 'device'], function ($router) {
+            /* @var \Laravel\Lumen\Routing\Router $router */
+            $router->post('/', 'DeviceController@store');              // 新增
+            $router->get('/', 'DeviceController@index');               // 列表
+            $router->get('/{id}', 'DeviceController@show');            // 详情
+            $router->put('/{id}', 'DeviceController@update');          // 更新
+            $router->delete('/', 'DeviceController@delete');           // 删除
+        });
     });
 });
 
