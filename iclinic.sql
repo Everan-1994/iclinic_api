@@ -11,7 +11,7 @@
  Target Server Version : 50723
  File Encoding         : 65001
 
- Date: 21/09/2019 10:51:02
+ Date: 23/09/2019 00:11:31
 */
 
 SET NAMES utf8mb4;
@@ -416,15 +416,20 @@ CREATE TABLE `code_treatment` (
 -- ----------------------------
 DROP TABLE IF EXISTS `department`;
 CREATE TABLE `department` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `jgdm` varchar(30) NOT NULL COMMENT '机构标识',
   `ksbm` varchar(10) NOT NULL COMMENT '科室编码',
   `ksmc` varchar(32) NOT NULL COMMENT '科室名称',
   `bzksdm` varchar(8) NOT NULL COMMENT '标准科室代码',
   `ybjdm` varchar(8) DEFAULT NULL COMMENT '医保局代码',
   `ksjs` text COMMENT '科室简介',
-  `sjscsj` datetime NOT NULL COMMENT '数据生成日期时间',
-  `tbrqsj` datetime NOT NULL COMMENT '填报日期',
-  `cxbz` varchar(2) NOT NULL COMMENT '撤销标志'
+  `sjscsj` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '数据生成日期时间',
+  `tbrqsj` int(11) NOT NULL COMMENT '填报日期',
+  `cxbz` varchar(2) NOT NULL COMMENT '撤销标志',
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='科室字典表';
 
 -- ----------------------------
@@ -432,6 +437,7 @@ CREATE TABLE `department` (
 -- ----------------------------
 DROP TABLE IF EXISTS `device`;
 CREATE TABLE `device` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `jgdm` varchar(30) NOT NULL COMMENT '机构标识',
   `sbdh` varchar(30) NOT NULL COMMENT '设备代号',
   `sbmc` varchar(20) NOT NULL COMMENT '设备名称',
@@ -441,17 +447,28 @@ CREATE TABLE `device` (
   `sbxh` varchar(120) DEFAULT NULL COMMENT '设备型号',
   `sbcs` text COMMENT '备参数',
   `sblx` varchar(2) DEFAULT NULL COMMENT '设备类型',
-  `gmrq` date NOT NULL COMMENT '购买日期',
+  `gmrq` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '购买日期',
   `yt` text COMMENT '用途',
   `sbjzje` float DEFAULT NULL COMMENT '设备价值金额',
   `gjsxqk` varchar(2) DEFAULT NULL COMMENT '购进时新旧情况',
   `llsjsm` int(3) DEFAULT NULL COMMENT '理论设计寿命',
   `syqk` char(1) NOT NULL COMMENT '使用情况',
   `bz` varchar(100) DEFAULT NULL COMMENT '备注',
-  `sjscsj` datetime NOT NULL COMMENT '数据生成日期时间',
-  `tbrqsj` datetime NOT NULL COMMENT '填报日期',
-  `cxbz` varchar(2) NOT NULL COMMENT '撤销标志'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='设备资源信息表';
+  `sjscsj` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '数据生成日期时间',
+  `tbrqsj` int(11) NOT NULL COMMENT '填报日期',
+  `cxbz` varchar(2) NOT NULL COMMENT '撤销标志',
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='设备资源信息表';
+
+-- ----------------------------
+-- Records of device
+-- ----------------------------
+BEGIN;
+INSERT INTO `device` VALUES (1, 'dsad123', '123asd', '123sad', 123, '1', '123', '123', '123sad', '1', '2019-09-20 00:00:00', '123sad', 123, '1', 123, '1', '123', '2019-09-20 00:00:00', 1568995200, '1', '2019-09-22 06:56:54', '2019-09-22 06:58:10', NULL);
+COMMIT;
 
 -- ----------------------------
 -- Table structure for institution
@@ -511,6 +528,7 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `institution_business`;
 CREATE TABLE `institution_business` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `jgdm` varchar(30) NOT NULL COMMENT '机构标识',
   `nf` varchar(6) NOT NULL COMMENT '月份',
   `pcjgsl` int(2) DEFAULT NULL COMMENT '派出（分支）机构数量',
@@ -530,9 +548,13 @@ CREATE TABLE `institution_business` (
   `wxzcjkbf` float NOT NULL COMMENT '无形资产及开办费',
   `fz` float NOT NULL COMMENT '负债',
   `jzc` float NOT NULL COMMENT '净资产',
-  `sjscsj` datetime NOT NULL COMMENT '数据生成日期时间',
-  `tbrqsj` datetime NOT NULL COMMENT '填报日期',
-  `cxbz` varchar(2) NOT NULL COMMENT '撤销标志'
+  `sjscsj` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '数据生成日期时间',
+  `tbrqsj` int(11) NOT NULL COMMENT '填报日期',
+  `cxbz` varchar(2) NOT NULL COMMENT '撤销标志',
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='机构业务开展情况表';
 
 -- ----------------------------
@@ -643,7 +665,7 @@ CREATE TABLE `person` (
 BEGIN;
 INSERT INTO `person` VALUES (1, 'qwe', 'wqewqe', '1', '', '', 'qwewqe', '1', '男', '', '', NULL, '2019-09-15', '1', NULL, '', NULL, '', '', '', '', '', NULL, '', NULL, '', '', '', '', '', '', '', '', '', '', NULL, '', '', '', NULL, 1568563200, '', '1', '2019-09-16 13:29:31', '2019-09-16 14:02:40', '0000-00-00 00:00:00');
 INSERT INTO `person` VALUES (2, 'jdksdd', 'dsadsad', '1', '', '', '赵云', '1', '男', '', '', NULL, '2019-09-15', '', NULL, '', NULL, '', '', '', '', '', NULL, '', NULL, '', '', '', '', '', '', '', '', '', '', NULL, '', '', '', NULL, 1568563200, '', '1', '2019-09-16 13:49:24', '2019-09-16 14:02:45', '0000-00-00 00:00:00');
-INSERT INTO `person` VALUES (3, '123456', '123456', '1', '', '', '123456', '1', '男', '', '', NULL, '2019-09-16', '', NULL, '', NULL, '', '', '', '', '', NULL, '', NULL, '', '', '', '', '', '', '', '', '', '', NULL, '', '', '', NULL, 1568390400, '1', '2', '2019-09-17 12:36:43', '2019-09-17 14:30:04', NULL);
+INSERT INTO `person` VALUES (3, '1234561232131313', '123456', '1', '', '', '123456', '1', '男', '', '', NULL, '2019-09-15', '', NULL, '', NULL, '', '', '', '', '', NULL, '', NULL, '', '', '', '', '', '', '', '', '', '', NULL, '', '', '', NULL, 1568304000, '1', '2', '2019-09-17 12:36:43', '2019-09-22 00:36:38', NULL);
 COMMIT;
 
 -- ----------------------------
@@ -694,18 +716,19 @@ CREATE TABLE `service_point` (
 -- ----------------------------
 DROP TABLE IF EXISTS `staff`;
 CREATE TABLE `staff` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `jgdm` varchar(30) NOT NULL COMMENT '机构标识',
   `yhrygh` varchar(30) NOT NULL COMMENT '医护人员工号/登陆账号',
   `yhryxm` varchar(30) NOT NULL COMMENT '医护人员姓名',
   `xb` char(1) NOT NULL COMMENT '性别',
-  `csrq` date NOT NULL COMMENT '出生日期',
+  `csrq` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '出生日期',
   `sfzh` varchar(20) NOT NULL COMMENT '身份证号',
   `ksdm` varchar(10) NOT NULL COMMENT '所属科室代码',
   `zyjszwdm` varchar(3) NOT NULL COMMENT '专业技术职务代码',
   `zyjszwlbdm` varchar(3) NOT NULL COMMENT '专业技术职务类别代码',
   `zzlbmc` varchar(50) NOT NULL COMMENT '资质类别名称',
   `zgzsbm` varchar(30) NOT NULL COMMENT '资格证书编号',
-  `zghdsj` date NOT NULL COMMENT '资格获得时间',
+  `zghdsj` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '资格获得时间',
   `zyzsbm` varchar(30) NOT NULL COMMENT '执业证书编码',
   `fzrq` varchar(30) NOT NULL COMMENT '发证日期',
   `zydd` varchar(70) NOT NULL COMMENT '执业地点',
@@ -716,15 +739,19 @@ CREATE TABLE `staff` (
   `sjhm` varchar(11) NOT NULL COMMENT '手机号码',
   `zc` text COMMENT '专长',
   `mc` varchar(2) DEFAULT NULL COMMENT '民族',
-  `cjgzrq` date NOT NULL COMMENT '参加工作日期',
-  `zcsj` datetime NOT NULL COMMENT '注册日期时间',
+  `cjgzrq` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '参加工作日期',
+  `zcsj` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '注册日期时间',
   `xl` varchar(2) DEFAULT NULL COMMENT '学历',
   `grzpcfdz` varchar(150) NOT NULL COMMENT '个人照片存放地址',
   `zgzcfdz` varchar(150) DEFAULT NULL COMMENT '资格证存放地址',
   `zyzcfdz` varchar(150) DEFAULT NULL COMMENT '执业证存放地址',
-  `sjscsj` datetime NOT NULL COMMENT '数据生成日期时间',
-  `tbrqsj` datetime NOT NULL COMMENT '填报日期',
-  `cxbz` varchar(2) NOT NULL COMMENT '撤销标志'
+  `sjscsj` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '数据生成日期时间',
+  `tbrqsj` int(11) NOT NULL COMMENT '填报日期',
+  `cxbz` varchar(2) NOT NULL COMMENT '撤销标志',
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='人力资源信息表';
 
 -- ----------------------------
