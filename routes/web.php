@@ -162,6 +162,49 @@ $router->group([
             $router->put('/{id}', 'DeviceController@update');          // 更新
             $router->delete('/', 'DeviceController@delete');           // 删除
         });
+
+        // 医学诊断
+        $router->group(['prefix' => 'diagnose'], function ($router) {
+            /* @var \Laravel\Lumen\Routing\Router $router */
+            $router->post('/', 'DiagnoseController@store');              // 新增
+            $router->get('/', 'DiagnoseController@index');               // 列表
+            $router->get('/{id}', 'DiagnoseController@show');            // 详情
+            $router->put('/{id}', 'DiagnoseController@update');          // 更新
+            $router->delete('/', 'DiagnoseController@delete');           // 删除
+        });
+
+        // 门诊处方
+        $router->group(['prefix' => 'order'], function ($router) {
+            /* @var \Laravel\Lumen\Routing\Router $router */
+            $router->post('/', 'OrderController@store');              // 新增
+            $router->get('/', 'OrderController@index');               // 列表
+            $router->get('/{id}', 'OrderController@show');            // 详情
+            $router->put('/{id}', 'OrderController@update');          // 更新
+            $router->delete('/', 'OrderController@delete');           // 删除
+        });
+
+        // 门诊病历
+        $router->group(['prefix' => 'record'], function ($router) {
+            /* @var \Laravel\Lumen\Routing\Router $router */
+            $router->post('/', 'RecordController@store');              // 新增
+            $router->get('/', 'RecordController@index');               // 列表
+            $router->get('/{id}', 'RecordController@show');            // 详情
+            $router->put('/{id}', 'RecordController@update');          // 更新
+            $router->delete('/', 'RecordController@delete');           // 删除
+        });
+
+        // 转诊记录
+        $router->group(['prefix' => 'referral'], function ($router) {
+            /* @var \Laravel\Lumen\Routing\Router $router */
+            $router->post('/', 'ReferralController@store');              // 新增
+            $router->get('/', 'ReferralController@index');               // 列表
+            $router->get('/{id}', 'ReferralController@show');            // 详情
+            $router->put('/{id}', 'ReferralController@update');          // 更新
+            $router->delete('/', 'ReferralController@delete');           // 删除
+        });
+
+        // 下拉选项
+        $router->get('/select', 'Api\SelectController@getSelectList');           // 列表
     });
 });
 
