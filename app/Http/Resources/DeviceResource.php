@@ -17,7 +17,7 @@ class DeviceResource extends Resource
             'jgdm' => $this->jgdm,
             'sbdh' => $this->sbdh,
             'sbmc' => $this->sbmc,
-            'sbxh' => $this->sbxh,
+            'tpsbts' => $this->tpsbts,
             'created_at' => $this->created_at->toDateTimeString(),
         ];
     }

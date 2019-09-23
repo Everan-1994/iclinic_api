@@ -16,7 +16,7 @@ class OdiResource extends Resource
             'id' => $this->id,
             'jgdm' => $this->jgdm,
             'bspt' => $this->bspt,
-            'nf' => date('Y-m', $this->nf),
+            'nf' => $this->nf,
             'zgzs' => $this->zgzs,
             'created_at' => $this->created_at->toDateTimeString(),
         ];
