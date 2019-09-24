@@ -17,7 +17,7 @@ class RecordResource extends Resource
             'jgdm' => $this->jgdm,
             'fwwddm' => $this->fwwddm,
             'kh' => $this->kh,
-            'zdxxid' => $this->zdxxid,
+            'jzlx' => $this->jzlx,
             'created_at' => $this->created_at->toDateTimeString(),
         ];
     }
