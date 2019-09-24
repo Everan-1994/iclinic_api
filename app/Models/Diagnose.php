@@ -20,6 +20,11 @@ class Diagnose extends Model
         'sjscsj', 'tbrqsj', 'cxbz'
     ];
 
+    public function setCsrqAttribute($csrq)
+    {
+        $this->attributes['csrq'] = date('Y-m-d', $csrq * 1);
+    }
+
     public function setZdsjAttribute($zdsj)
     {
         $this->attributes['zdsj'] = date('Y-m-d', $zdsj * 1);
