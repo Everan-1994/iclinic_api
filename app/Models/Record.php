@@ -30,7 +30,11 @@ class Record extends Model
 
     public function setJzjssjAttribute($jzjssj)
     {
-        $this->attributes['jzjssj'] = date('Y-m-d', $jzjssj * 1);
+        if (!empty($jzjssj)) {
+            $this->attributes['jzjssj'] = date('Y-m-d', $jzjssj * 1);
+        }
+
+        $this->attributes['jzjssj'] = null;
     }
 
     public function setCsrqAttribute($csrq)

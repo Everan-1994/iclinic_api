@@ -138,9 +138,15 @@ class DiagnoseController extends Controller
         ]);
 
         // 修改部分数据格式
-        $params['zdsj'] = date('Y-m-d', $params['zdsj']);
         $params['jzrqsj'] = date('Y-m-d', $params['jzrqsj']);
+        $params['csrq'] = date('Y-m-d', $params['csrq']);
         $params['sjscsj'] = date('Y-m-d', $params['sjscsj']);
+
+        if (empty($params['zdsj'])) {
+            $params['zdsj'] = null;
+        } else {
+            $params['zdsj'] = date('Y-m-d', $params['zdsj']);
+        }
 
         $diagnose = Diagnose::query()->whereId($id)->update($params);
 

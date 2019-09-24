@@ -61,7 +61,7 @@ class RecordController extends Controller
             'gms' => 'nullable',
             'cblb' => 'nullable',
             'jzrqsj' => 'required',
-            'jzzdsm' => 'required',
+            'jzzdsm' => 'nullable',
             'czbzdm' => 'required',
             'zs' => 'nullable',
             'xbs' => 'nullable',
@@ -71,11 +71,11 @@ class RecordController extends Controller
             'mzzzzddm' => 'nullable',
             'mzzzzdmc' => 'nullable',
             'mzzzzdbmlx' => 'required',
-            'zzms' => 'required',
-            'bzyj' => 'required',
-            'zzzf' => 'required',
-            'jkzd' => 'required',
-            'czjh' => 'required',
+            'zzms' => 'nullable',
+            'bzyj' => 'nullable',
+            'zzzf' => 'nullable',
+            'jkzd' => 'nullable',
+            'czjh' => 'nullable',
             'yzysgh' => 'required',
             'yzysjm' => 'required',
             'czylwsjgdm' => 'required',
@@ -159,9 +159,14 @@ class RecordController extends Controller
 
         // 修改部分数据格式
         $params['csrq'] = date('Y-m-d', $params['csrq']);
-        $params['jzjssj'] = date('Y-m-d', $params['jzjssj']);
         $params['jzrqsj'] = date('Y-m-d', $params['jzrqsj']);
         $params['sjscsj'] = date('Y-m-d', $params['sjscsj']);
+
+        if (empty($params['jzjssj'])) {
+            $params['jzjssj'] = null;
+        } else {
+            $params['jzjssj'] = date('Y-m-d', $params['jzjssj']);
+        }
 
         $diagnose = Record::query()->whereId($id)->update($params);
 

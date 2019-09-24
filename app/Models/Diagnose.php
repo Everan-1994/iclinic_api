@@ -27,7 +27,12 @@ class Diagnose extends Model
 
     public function setZdsjAttribute($zdsj)
     {
-        $this->attributes['zdsj'] = date('Y-m-d', $zdsj * 1);
+        if (!empty($zdsj)) {
+            $this->attributes['zdsj'] = date('Y-m-d', $zdsj * 1);
+        }
+
+        $this->attributes['zdsj'] = null;
+
     }
 
     public function setJzrqsjAttribute($jzrqsj)

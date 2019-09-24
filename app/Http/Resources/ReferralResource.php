@@ -17,7 +17,7 @@ class ReferralResource extends Resource
             'jgdm' => $this->jgdm,
             'fwwddm' => $this->fwwddm,
             'kh' => $this->kh,
-            'zzjlid' => $this->zdxxid,
+            'zzjlid' => $this->zzjlid,
             'created_at' => $this->created_at->toDateTimeString(),
         ];
     }

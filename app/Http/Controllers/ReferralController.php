@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\RecordResource;
+use App\Http\Resources\ReferralResource;
 use App\Models\Referral;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -36,7 +37,7 @@ class ReferralController extends Controller
             ->paginate($request->input('pageSize', 10), ['*'], 'page', $request->input('page', 1));
 
         return $this->success([
-            'data' => RecordResource::collection($diagnose),
+            'data' => ReferralResource::collection($diagnose),
             'total' => $diagnose->total(),
         ]);
     }
