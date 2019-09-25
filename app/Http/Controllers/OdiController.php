@@ -131,6 +131,7 @@ class OdiController extends Controller
         ]);
 
         // 修改部分数据格式
+        $params['nf'] = date('Y-m', $params['nf']);
         $params['sjscsj'] = date('Y-m-d', $params['sjscsj']);
 
         $odi = Odi::query()->whereId($id)->update($params);
