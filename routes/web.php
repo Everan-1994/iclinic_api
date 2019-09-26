@@ -74,24 +74,24 @@ $router->group([
         });
 
         // 区块
-        $router->group(['prefix' => 'block'], function ($router) {
-            /* @var \Laravel\Lumen\Routing\Router $router */
-            $router->get('/', 'BlockController@readAll'); // list
-            $router->get('{id:[0-9]+}', 'BlockController@read'); // detail
-            $router->post('/', 'BlockController@createOrUpdate'); // create
-            $router->put('/{id:[0-9]+}', 'BlockController@createOrUpdate'); // update
-            $router->delete('/', 'BlockController@delete'); // delete
-
-            // 区块内容
-            $router->get('/{blockId:[0-9]+}/item', 'BlockItemController@readAll'); // list
-            $router->group(['prefix' => 'item'], function ($router) {
-                $router->get('{id:[0-9]+}', 'BlockItemController@read'); // detail
-                $router->post('/', 'BlockItemController@createOrUpdate'); // create
-                $router->put('/{id:[0-9]+}', 'BlockItemController@createOrUpdate'); // update
-                $router->delete('/', 'BlockItemController@delete'); // delete
-                $router->patch('/sort', 'BlockItemController@sort'); // sort
-            });
-        });
+//        $router->group(['prefix' => 'block'], function ($router) {
+//            /* @var \Laravel\Lumen\Routing\Router $router */
+//            $router->get('/', 'BlockController@readAll'); // list
+//            $router->get('{id:[0-9]+}', 'BlockController@read'); // detail
+//            $router->post('/', 'BlockController@createOrUpdate'); // create
+//            $router->put('/{id:[0-9]+}', 'BlockController@createOrUpdate'); // update
+//            $router->delete('/', 'BlockController@delete'); // delete
+//
+//            // 区块内容
+//            $router->get('/{blockId:[0-9]+}/item', 'BlockItemController@readAll'); // list
+//            $router->group(['prefix' => 'item'], function ($router) {
+//                $router->get('{id:[0-9]+}', 'BlockItemController@read'); // detail
+//                $router->post('/', 'BlockItemController@createOrUpdate'); // create
+//                $router->put('/{id:[0-9]+}', 'BlockItemController@createOrUpdate'); // update
+//                $router->delete('/', 'BlockItemController@delete'); // delete
+//                $router->patch('/sort', 'BlockItemController@sort'); // sort
+//            });
+//        });
 
         // 个人信息
         $router->group(['prefix' => 'person'], function ($router) {
