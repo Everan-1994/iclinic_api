@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
+
 class HumanResource extends Resource
 {
     /**
@@ -17,7 +19,7 @@ class HumanResource extends Resource
             'jgdm' => $this->jgdm,
             'yhrygh' => $this->yhrygh,
             'yhryxm' => $this->yhryxm,
-            'xb' => $this->xb,
+            'csrq' => Carbon::parse($this->csrq)->toDateString(),
             'created_at' => $this->created_at->toDateTimeString(),
         ];
     }
