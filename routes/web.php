@@ -204,7 +204,10 @@ $router->group([
         });
 
         // 下拉选项
-        $router->get('/select', 'Api\SelectController@getSelectList');           // 列表
+        $router->get('/select', 'Api\SelectController@getSelectList');    // 列表
+        $router->post('/select', 'Api\SelectController@store');           // 新增
+        $router->put('/select', 'Api\SelectController@update');           // 编辑
+        $router->delete('/select', 'Api\SelectController@delete');        // 删除
     });
 });
 
